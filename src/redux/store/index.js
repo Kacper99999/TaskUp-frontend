@@ -11,10 +11,10 @@ import {
   } from 'redux-persist';
 import storage from "redux-persist/lib/storage/session";
 import { authReducer } from "../slices/auth.slice";
-import { tasksTeducer } from "../slices/tasks.slice";
+import { tasksReducer } from "../slices/tasks.slice";
 
 const authPersistConfig = {
-    kay: "auth",
+    key: "auth",
     storage,
     whilelist: ["token"],
 };
@@ -22,7 +22,7 @@ const authPersistConfig = {
 export const store = configureStore({
     reducer: {
         auth: persistReducer(authPersistConfig, authReducer),
-        tasks: tasksTeducer,
+        tasks: tasksReducer,
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
