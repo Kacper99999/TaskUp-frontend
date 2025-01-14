@@ -1,5 +1,5 @@
 import { useEffect, lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from './components/route/PrivateRoute';
 import { RestrictedRoute } from './components/route/RestrictedRoute';
 import { MainLayout } from './components/layouts/MainLayout';
@@ -19,7 +19,8 @@ function App() {
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path='/' element={<MainLayout/>}>
-          <Route index element={<HomePage/>}/>
+          <Route index element={<Navigate to ="/login" replace>
+          </Navigate>}/>
         <Route
         path='/register'
         element={

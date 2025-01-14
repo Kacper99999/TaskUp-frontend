@@ -16,6 +16,11 @@ export const LogInForm = () => {
     })
 
     return(
+        <div className={css.formContainer}>
+            <div className={css.text}>
+                <h1>TaskUp</h1>
+                <p>Every task, one step closer to success</p>
+            </div>
         <Formik
         initialValues= {{email:"", password:""}}
         validationSchema= {validationSchema}
@@ -25,22 +30,24 @@ export const LogInForm = () => {
         }}
         >
             {({isSubmitting}) => (
-                <Form>
-                    <div>
-                        <label>Email</label>
-                        <Field type="email" name="email" id="email"/>
-                        <ErrorMessage name="emial" component={"div"} style={{color:"red"}}/>
-                    </div>
-                    <div>
-                        <label>Hasło</label>
-                        <Field type="password" name="password" id="password"/>
-                        <ErrorMessage name="password" component={"div"} style={{color:"red"}}/>
-                    </div>
-                    <button type="submit" disabled={isSubmitting}>Zaloguj się</button>
+                <Form className={css.form}>
+                    
+                    <Field type="email" name="email" id="email" placeholder="your@email.com"/>
+                    
+                    <ErrorMessage name="emial" component={"div"} style={{color:"red"}}/>
+                    
+                    
+                    
+                    <Field type="password" name="password" id="password" placeholder="password"/>
+                    
+                    <ErrorMessage name="password" component={"div"} style={{color:"red"}}/>
+                    
+                    <button type="submit" disabled={isSubmitting}>Log In</button>
                 </Form>
             )
 
             }
         </Formik>
+        </div>
     )
 }

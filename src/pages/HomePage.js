@@ -1,3 +1,5 @@
+import { AppBar } from "../components/appbar"
+
 export default function HomePage(){
     return(
         <>
