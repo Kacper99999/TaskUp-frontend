@@ -2,7 +2,7 @@ import { useEffect, lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from './components/route/PrivateRoute';
 import { RestrictedRoute } from './components/route/RestrictedRoute';
-import { MainLayout } from './components/layouts/MainLayout';
+import { MainLayout } from './components/Layouts/MainLayout';
 import { useAuth } from './hooks';
 import { Suspense } from 'react';
 import './App.css';
