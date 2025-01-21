@@ -18,9 +18,10 @@
     height: 520px;
     background-color: #F5F5F5;
     border-radius: 40px;
-    gap: 85px;
+    gap: 35px;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .fields{
@@ -53,6 +54,8 @@
     color: #A6ABB9;
     font-size: 15px;
 }
+
+
 
 .login{
     border: none;
@@ -87,6 +90,7 @@
     width: 260px;
     text-align: center;
 }
+
 
 .error{
     position: absolute;
