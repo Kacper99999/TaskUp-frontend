@@ -18,10 +18,6 @@ export const LogInForm = () => {
 
     return(
         <div className={css.formContainer}>
-            <div className={css.logo}>
-                <h1>TaskUp</h1>
-                <p>Every task, one step closer to success</p>
-            </div>
         <Formik
         initialValues= {{email:"", password:""}}
         validationSchema= {validationSchema}
@@ -31,8 +27,11 @@ export const LogInForm = () => {
         }}
         >
             {({isSubmitting}) => (
-                <Form className={css.form}> 
-                    <p className={css.text}>log in using an email and password, after registering:</p>
+                <Form className={css.form}>
+                    <div className={css.welcome_text}>
+                    <h5>WELCOME IN TASK UP!</h5>
+                    <p className={css.text}>Log in using an email and password, after registering:</p>
+                    </div> 
                     <div className={css.fields}>
                     <div className={css.form_input}>
                     <Field type="email" name="email" id="email" placeholder="your@email.com"/> 

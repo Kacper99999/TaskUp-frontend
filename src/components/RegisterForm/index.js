@@ -15,15 +15,14 @@ export const RegisterForm = () => {
         email: Yup.string()
         .required("Email is required"),
         password: Yup.string()
-        .required("Password is required")
+        .required("Password is required"),
+        reapeatPassword: Yup.string()
+        .oneOf([Yup.ref("password"),null],"Password must match")
+        .required("Please confirm your password")
     })
 
     return(
         <div className={css.formContainer}>
-            <div className={css.logo}>
-                <h1>TaskUp</h1>
-                <p>Every task, one step closer to success</p>
-            </div>
         <Formik
         initialValues= {{name:"",email:"", password:""}}
         validationSchema= {validationSchema}
@@ -34,9 +33,9 @@ export const RegisterForm = () => {
         >
             {({isSubmitting}) => (
                 <Form className={css.form}> 
-                <div>
-                    <h5 className={css.text}>WELCOME IN TASK UP!</h5>
-                    <p>Please, complete the registration form:</p>
+                <div className={css.welcome_text}>
+                    <h5>WELCOME IN TASK UP!</h5>
+                    <p className={css.text}>Please, complete the registration form:</p>
                     </div>
                     <div className={css.fields}>
                     <div className={css.form_input}>
@@ -50,6 +49,10 @@ export const RegisterForm = () => {
                     <div className={css.form_input}>
                     <Field type="password" name="password" id="password" placeholder="password"/>
                     <ErrorMessage name="password" component={"div"} className={css.error}/>   
+                    </div>
+                    <div className={css.form_input}>
+                        <Field type="password" name="repeatpassword" id="repeatpassword" placeholder="repeat password"/>
+                        <ErrorMessage name="repeatpassword" component={"div"} className={css.error}/>
                     </div>
                     </div>
                     <div className={css.buttons}>

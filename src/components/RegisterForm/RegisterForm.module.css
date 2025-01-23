@@ -1,24 +1,19 @@
-.formContainer{
+.welcome_text{
     display: flex;
-    gap: 60px;
+    align-items: center;
     justify-content: center;
-    margin-top: 85px;
+    flex-direction: column;
+    position: absolute;
+    top:20px;
 }
-
-.formContainer h1{
-    font-size: 96px;
-    margin-top: 60px;
-}
-
 
 .form{
     display: flex;
     flex-direction: column;
     width: 400px;
-    height: 520px;
+    height: 600px;
     background-color: #F5F5F5;
     border-radius: 40px;
-    gap: 35px;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -28,11 +23,27 @@
     display: flex;
     flex-direction: column;
     gap:20px;
+    position: absolute;
+    top:153px;
 }
 
 .buttons{
     display: flex;
     gap: 10px;
+    position: absolute;
+    top:490px;
+}
+
+.buttons button{
+    cursor: pointer;
+}
+
+.buttons > *:nth-child(1):hover{
+    background-color: rgb(236, 236, 236);
+}
+
+.buttons > *:nth-child(2):hover{
+    background-color: #4ba439;
 }
 
 .form_input{
@@ -55,8 +66,6 @@
     font-size: 15px;
 }
 
-
-
 .login{
     border: none;
     outline: none;
@@ -70,27 +79,11 @@
     font-weight: 600;
 }
 
-.logo{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding-top: 65px;
-}
-
-.logo > *{
-    margin: 0;
-}
-
-.logo p{
-    font-size: 16px;
-    margin-top: -20px;
-}
 
 .text{
     width: 260px;
     text-align: center;
 }
-
 
 .error{
     position: absolute;

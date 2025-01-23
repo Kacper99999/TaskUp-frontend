@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
+
 .header{
     display: flex;
     justify-content: space-between;
@@ -6,6 +8,9 @@
 }
 .logo{
     display: flex;
+    font-family: 'Schibsted+Grotesk',sans-serif;
+    font-weight: 800;
+    cursor: pointer;
 }
 .up{
     color: white;
