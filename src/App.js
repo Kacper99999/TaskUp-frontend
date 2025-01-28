@@ -3,11 +3,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from './components/route/PrivateRoute';
 import { RestrictedRoute } from './components/route/RestrictedRoute';
 import { MainLayout } from './components/Layouts/MainLayout';
-import { useAuth } from './hooks';
 import { Suspense } from 'react';
 import './App.css';
 
-const HomePage = lazy(() => import('./pages/HomePage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const TasksPage = lazy(() => import('./pages/TasksPage'));
@@ -35,7 +33,7 @@ function App() {
         <Route
         path='/tasks'
         element={
-          <PrivateRoute redirectTo='/login' component={<TasksPage/>}/>
+          <RestrictedRoute redirectTo='/login' component={<TasksPage/>}/>
         }
         />
         </Route>

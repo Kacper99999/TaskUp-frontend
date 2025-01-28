@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    background-color: #F7F7F7;
+}
+
+input{
+    outline: none;
+}
+
+input::placeholder{
+    color: #AAAAAA90;
+    font-family: "Roboto";
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form_fields{
+    display: flex;
+}
+
+.form_field input{
+    height: 33px;
+    border: none;
+}
+
+.form_field select{
+    height: 35px;
+    border: none;
+}
+
+.form_field:nth-of-type(1) input{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-right: 2px solid #AAAAAA80;
+    padding-left: 50px;
+    width: 230px;
+}
+
+.form_field:nth-of-type(2) input{
+    width: 30px;
+    padding-left: 10px;
+}
+
+.form_field:nth-of-type(3) input{
+    width: 30px;
+    border-right: 2px solid #AAAAAA80;
+    padding-left: 10px;
+}
+
+.form_field:nth-of-type(4) select{
+    width: 150px;
+    border-right: 2px solid #AAAAAA80;
+}
+
+.form_field:nth-of-type(5) select{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 100px;
+}
+
+.separate{
+    background-color: white;
+}

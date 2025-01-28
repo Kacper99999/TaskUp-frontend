@@ -10,8 +10,6 @@ export const RegisterForm = () => {
     const dispatch = useDispatch();
 
     const validationSchema = Yup.object({
-        name: Yup.string()
-        .required("Name is required"),
         email: Yup.string()
         .required("Email is required"),
         password: Yup.string()
@@ -38,10 +36,6 @@ export const RegisterForm = () => {
                     <p className={css.text}>Please, complete the registration form:</p>
                     </div>
                     <div className={css.fields}>
-                    <div className={css.form_input}>
-                    <Field type="text" name="name" id="name" placeholder="name"/>
-                    <ErrorMessage name="name" component={"div"} className={css.error}/>
-                    </div>
                     <div className={css.form_input}>
                     <Field type="email" name="email" id="email" placeholder="your@email.com"/> 
                     <ErrorMessage name="email" component={"div"} className={css.error}/>
