@@ -1,0 +1,26 @@
+.calendar{
+    display: flex;
+    flex-wrap: wrap;
+    width: 432px;
+    height: 166px;
+}
+
+.day{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.day:hover{
+    background-color: #5FB74D;
+    color: white;
+}
+
+.days{
+    display: flex;
+    background-color: white;
+    width: ;
+}
