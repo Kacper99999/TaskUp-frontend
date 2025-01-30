@@ -1,13 +1,14 @@
 import React,{ useState, useEffect } from "react"
 import css from "./Calendar.module.css";
 
-export const Calendar = () => {
+export const Calendar = ({onDayClick}) => {
 
     const [daysInMonth, setDaysInMonth] = useState([]);
     const [month, setMonth] = useState("");
     const [year, setYear] = useState("");
 
     const daysArray = ["Mon", "Tue", "Web", "Thu", "Fri", "Sat", "Sun"];
+
 
     useEffect(() => {
 
@@ -28,9 +29,13 @@ export const Calendar = () => {
         }
 
         setDaysInMonth(daysArray);
-        setMonth(today.toLocaleString("default",{month:"long"}));
+        setMonth(today.toLocaleString("en-US",{month:"long"}));
         setYear(currentYear);
     },[])
+
+    const handleClickedDay = (day) => {
+        onDayClick({day: day, month: month, year: year})
+    }
 
     return(
         <div>
@@ -38,11 +43,13 @@ export const Calendar = () => {
             <div className={css.calendar}>
             <div className={css.days}>
                 {daysArray.map((day, index) => (
-                    <div className={css.day} key={index}>{day}</div>
+                    <div className={css.days_week} key={index}>{day}</div>
                 ))}
             </div>
             {daysInMonth.map((day, index) => (
-                <div className={css.day} key={index}>{day}</div>
+                <div className={day === "" ? css.empty_day : css.day} key={index} onClick={() => handleClickedDay(day)}>
+                    {day}
+                </div>
             ))}
             </div>
         </div>
