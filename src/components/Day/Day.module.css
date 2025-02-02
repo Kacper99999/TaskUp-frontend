@@ -1,5 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
+
+body {
+    font-family: 'Schibsted Grotesk', sans-serif;
+}
 .day{
     width: 400px;
     height: 400px;
     background-color: white;
+}
+
+.date{
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.task{
+
+    height: 50px;
+}
+
+.task:nth-child(odd){
+    background-color: #CAFFC980;
 }
