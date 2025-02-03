@@ -2,7 +2,6 @@ import css from "./Day.module.css";
 
 export const Day = ({day}) => {
 
-    console.log(day[0]);
     return(
         <div className={css.day}>
             {day.length > 0 ? (

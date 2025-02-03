@@ -6,20 +6,26 @@ export const Calendar = ({onDayClick}) => {
     const [daysInMonth, setDaysInMonth] = useState([]);
     const [month, setMonth] = useState("");
     const [year, setYear] = useState("");
+    const [changeMounth, setChangeMounth] = useState(0);
+    const [changeYear, setChangeYear] = useState(0);
 
     const daysArray = ["Mon", "Tue", "Web", "Thu", "Fri", "Sat", "Sun"];
+
+    let today = new Date();
+    const currentMonth = today.getMonth() + changeMounth;
+    const currentYear = today.getFullYear() + changeYear;
+    let firstDayOfMounth = new Date(currentYear, currentMonth,1).getDay();
+    const daysInCurrentMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    console.log(currentMonth);
 
 
     useEffect(() => {
 
-        const today = new Date();
-        const currentMonth = today.getMonth();
-        const currentYear = today.getFullYear();
-        const firstDayOfMounth = new Date(currentYear, currentMonth,1).getDay();
-        const daysInCurrentMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
         const daysArray = [];
 
+        if(firstDayOfMounth === 0){
+            firstDayOfMounth = 7
+        }
         for(let i = 1; i < firstDayOfMounth; i++){
             daysArray.push("");
         }
@@ -28,18 +34,42 @@ export const Calendar = ({onDayClick}) => {
             daysArray.push(day);
         }
 
+        today.setMonth(today.getMonth() + changeMounth)
+        today.setYear(today.getYear() + changeYear)
         setDaysInMonth(daysArray);
         setMonth(today.toLocaleString("en-US",{month:"long"}));
         setYear(currentYear);
-    },[])
+    },[changeMounth])
 
     const handleClickedDay = (day) => {
         onDayClick({day: day, month: month, year: year})
     }
 
+    const handlePastMonth = () => {
+        if(currentMonth === 0){
+            setChangeYear(changeYear - 1);
+            setChangeMounth(10);
+        }
+        else{
+            setChangeMounth(changeMounth - 1)
+        }
+    }
+
+    const handleFutureDay = () => {
+        if(currentMonth > 10){
+            setChangeYear(changeYear + 1)
+            setChangeMounth(-1);
+        }
+        else{
+            setChangeMounth(changeMounth + 1)
+        }}
+    
+
     return(
         <div>
+            <button onClick={() => handlePastMonth()}> past </button>
             <h1>{month} {year}</h1>
+            <button onClick={() => handleFutureDay()}> future </button>
             <div className={css.calendar}>
             <div className={css.days}>
                 {daysArray.map((day, index) => (
