@@ -89,7 +89,7 @@ export const TasksInput = ({onSubmitTask}) => {
                                 <ErrorMessage name="priority" component={"div"} className={css.error}/>
                             </div>
                             <div>
-                                <button type="submit" disabled={isSubmitting}>Add Task</button>
+                                <button className={css.button} type="submit" disabled={isSubmitting}>Input</button>
                             </div>
                             </div>
                         </Form>

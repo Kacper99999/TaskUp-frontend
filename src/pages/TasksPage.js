@@ -7,17 +7,17 @@ export default function TasksPage() {
 
     const saveTasks = (task) => {
         let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-        tasks.push(task)
-        localStorage.setItem("tasks",JSON.stringify(tasks))
+        tasks.push(task);
+        localStorage.setItem("tasks",JSON.stringify(tasks));
     }
     const [selectedDay, setSelectedDay] = useState({day:"", month:"", year:""});
 
     const handleDayClick = ({day, month, year}) => {
-        setSelectedDay({day, month, year})
+        setSelectedDay({day, month, year});
     }
     
     const handleTaskSubmit = (taskDetails) => {
-        const tasks = {...taskDetails, day:selectedDay.day, month: selectedDay.month, year:selectedDay.year}
+        const tasks = {...taskDetails, day:selectedDay.day, month: selectedDay.month, year:selectedDay.year};
         saveTasks(tasks);
     }
 
@@ -28,7 +28,7 @@ export default function TasksPage() {
             return [selectedDay];
         }
         else{
-            return selectedTasks
+            return selectedTasks;
         }
     }
 

@@ -68,3 +68,21 @@ input::placeholder{
 .separate{
     background-color: white;
 }
+
+.button{
+    background-color: #5FB74D;
+    color: white;
+    width: 126px;
+    height: 40px;
+    border-radius: 15px;
+    border: none;
+    font-family: "Roboto";
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 62px;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: #4ba439;
+}

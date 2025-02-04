@@ -67,7 +67,9 @@ export const Calendar = ({onDayClick}) => {
 
     return(
         <div>
-            <button onClick={() => handlePastMonth()}> past </button>
+            <svg className={css.arrow} onClick={() => handlePastMonth()}> 
+                <use xlinkHref='#icon-cheveron-left'></use>
+                 </svg>
             <h1>{month} {year}</h1>
             <button onClick={() => handleFutureDay()}> future </button>
             <div className={css.calendar}>

@@ -42,5 +42,8 @@
 .days{
     display: flex;
     background-color: white;
-    width: ;
+}
+
+.arrow{
+    fill: green;
 }
