@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from "react"
 import css from "./Calendar.module.css";
+import PropTypes from "prop-types";
 
 export const Calendar = ({onDayClick}) => {
 
@@ -16,7 +17,6 @@ export const Calendar = ({onDayClick}) => {
     const currentYear = today.getFullYear() + changeYear;
     let firstDayOfMounth = new Date(currentYear, currentMonth,1).getDay();
     const daysInCurrentMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-    console.log(currentMonth);
 
 
     useEffect(() => {
@@ -68,7 +68,7 @@ export const Calendar = ({onDayClick}) => {
     return(
         <div>
             <svg className={css.arrow} onClick={() => handlePastMonth()}> 
-                <use xlinkHref='#icon-cheveron-left'></use>
+            <use href="/sprite/sprite.svg#icon-cheveron-left"></use>
                  </svg>
             <h1>{month} {year}</h1>
             <button onClick={() => handleFutureDay()}> future </button>
@@ -87,3 +87,7 @@ export const Calendar = ({onDayClick}) => {
         </div>
     )
 }
+
+Calendar.protoTypes = {
+    onDayClick : PropTypes.func.isRequired
+};

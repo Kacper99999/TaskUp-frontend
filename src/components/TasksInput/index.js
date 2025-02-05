@@ -4,10 +4,11 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/operations/tasks.operations";
 import css from "./TasksInput.module.css";
+import PropTypes from "prop-types";
 
 export const TasksInput = ({onSubmitTask}) => {
     const [focusOnMinutes, setFocusOnMinutes] = useState(false);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     useEffect(()=>{
         if(focusOnMinutes){
@@ -94,10 +95,12 @@ export const TasksInput = ({onSubmitTask}) => {
                             </div>
                         </Form>
                     )}
-
                 </Formik>
             </div>
-            
         </div>
     )
 }
+
+TasksInput.protoTypes = {
+    onSubmitTask : PropTypes.func.isRequired
+};

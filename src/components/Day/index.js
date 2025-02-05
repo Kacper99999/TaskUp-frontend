@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import css from "./Day.module.css";
 
 export const Day = ({day}) => {
@@ -20,9 +21,10 @@ export const Day = ({day}) => {
                 <p>no tasks</p>
             )}
             </div> 
-            
-            
-
         </div>
     )
 }
+
+Day.propTypes = {
+    day : PropTypes.func.isRequired
+};
