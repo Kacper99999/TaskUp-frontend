@@ -55,7 +55,7 @@ export const Calendar = ({onDayClick}) => {
         }
     }
 
-    const handleFutureDay = () => {
+    const handleFutureMonth = () => {
         if(currentMonth > 10){
             setChangeYear(changeYear + 1)
             setChangeMounth(-1);
@@ -66,18 +66,22 @@ export const Calendar = ({onDayClick}) => {
     
 
     return(
-        <div>
-            <svg className={css.arrow} onClick={() => handlePastMonth()}> 
-            <use href="/sprite/sprite.svg#icon-cheveron-left"></use>
-                 </svg>
-            <h1>{month} {year}</h1>
-            <button onClick={() => handleFutureDay()}> future </button>
-            <div className={css.calendar}>
-            <div className={css.days}>
-                {daysArray.map((day, index) => (
-                    <div className={css.days_week} key={index}>{day}</div>
-                ))}
+        <div className={css.container}>
+            <div className={css.date}>
+                <svg onClick={() => handlePastMonth()} id="icon-cheveron-left" width="32" height="32" viewBox="0 0 32 32" x="0" y="0" >
+                    <path d="M11.28 14.869l-1.131 1.131 9.051 9.051 2.262-2.262-6.787-6.789 6.787-6.789-2.262-2.262z"></path>
+                </svg>
+                <h1>{month} {year}</h1>
+                <svg onClick={() => handleFutureMonth()} id="icon-cheveron-right" width="32" height="32" viewBox="0 0 32 32" x="48" y="0">
+                    <path d="M20.72 17.131l1.131-1.131-9.051-9.051-2.262 2.262 6.787 6.789-6.787 6.789 2.262 2.262 7.92-7.92z"></path>
+                </svg>
             </div>
+            <div className={css.calendar}>
+                <div className={css.days}>
+                    {daysArray.map((day, index) => (
+                        <div className={css.days_week} key={index}>{day}</div>
+                    ))}
+                </div>
             {daysInMonth.map((day, index) => (
                 <div className={day === "" ? css.empty_day : css.day} key={index} onClick={() => handleClickedDay(day)}>
                     {day}

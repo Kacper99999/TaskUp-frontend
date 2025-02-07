@@ -7,21 +7,29 @@ import css from "./TasksInput.module.css";
 import PropTypes from "prop-types";
 
 export const TasksInput = ({onSubmitTask}) => {
-    const [focusOnMinutes, setFocusOnMinutes] = useState(false);
+    const [focusOnStartMinutes, setFocusOnStartMinutes] = useState(false);
+    const [focusOnEndMinutes, setFocusOnEndMinutes] = useState(false);
+
     // const dispatch = useDispatch();
 
     useEffect(()=>{
-        if(focusOnMinutes){
-            document.getElementById("minutes").focus();
+        if(focusOnStartMinutes){
+            document.getElementById("start_minutes").focus();
         }
-    },[focusOnMinutes])    
+    },[focusOnStartMinutes])   
+    
+    useEffect(() => {
+        if(focusOnEndMinutes){
+            document.getElementById("end_minutes").focus();
+        }
+    },[focusOnEndMinutes])
     
     const validationSchema = Yup.object({
         taskText : Yup.string()
         .required("Input text."),
-        hour: Yup.string()
-        .matches(/^([01]?[0-9]|2[0-3])$/, "Invalid hour. Use HH format (0-23).")
-        .required("Hour is required."),
+        start_hour: Yup.string()
+        .matches(/^([01]?[0-9]|2[0-3])$/, "Invalid start_hour. Use HH format (0-23).")
+        .required("start_hour is required."),
     minutes: Yup.string()
         .matches(/^[0-5][0-9]$/, "Invalid minutes. Use MM format (00-59).")
         .required("Minutes are required."),
@@ -32,13 +40,12 @@ export const TasksInput = ({onSubmitTask}) => {
     })
 
     return(
-        <div>
-            <div className={css.form_container}>
+            <div>
                 <Formik
-                initialValues={{taskText:"", hour:"", minutes:"", category:"", priority:""}}
+                initialValues={{taskText:"", start_hour:"", start_minutes:"", end_hour:"", end_minutes:"", category:"", priority:""}}
                 validationSchema={validationSchema}
                 onSubmit={(values,{resetForm}) => {
-                    const time = `${values.hour}:${values.minutes}`
+                    const time = `${values.start_hour}:${values.start_minutes}`
                     // dispatch(addTask({...values,time}));
                     onSubmitTask(values);
                     resetForm();
@@ -51,18 +58,18 @@ export const TasksInput = ({onSubmitTask}) => {
                                 <ErrorMessage name="tasksText" component={"div"} className={css.error}/>
                             </div>
                             <div className={css.form_field}>
-                                <Field type="text" name="hour" placeholder="HH"
-                                value={values.hour}
+                                <Field type="text" name="start_hour" placeholder="HH"
+                                value={values.start_hour}
                                 onChange={(e) => {
-                                    const hour = e.target.value;
-                                    if(/^\d*$/.test(hour) && hour.length <= 2){
-                                        setFieldValue("hour",hour)
+                                    const start_hour = e.target.value;
+                                    if(/^\d*$/.test(start_hour) && start_hour.length <= 2){
+                                        setFieldValue("start_hour",start_hour)
                                     
-                                    if(hour.length === 2){
-                                        setFocusOnMinutes(true)
+                                    if(start_hour.length === 2){
+                                        setFocusOnStartMinutes(true)
                                     }
                                     else{
-                                        setFocusOnMinutes(false)
+                                        setFocusOnStartMinutes(false)
                                     }
                                 }
                                 }}
@@ -70,17 +77,50 @@ export const TasksInput = ({onSubmitTask}) => {
                             </div>
                             <span className={css.separate}>:</span>
                             <div className={css.form_field}>
-                                <Field type="text" name="minutes" placeholder="MM"  id="minutes"
-                                value={values.minutes}
+                                <Field type="text" name="start_minutes" placeholder="MM"  id="start_minutes"
+                                value={values.start_minutes}
                                 onChange={(e) => {
-                                    const minutes = e.target.value;
-                                    if(/^\d*$/.test(minutes) && minutes.length <= 2){
-                                    setFieldValue("minutes",minutes)
+                                    const start_minutes = e.target.value;
+                                    if(/^\d*$/.test(start_minutes) && start_minutes.length <= 2){
+                                    setFieldValue("start_minutes",start_minutes)
                                     }
                                 }
                                 }/>
-                                <ErrorMessage name="minutes" component={"div"} className={css.error}/>
+                                <ErrorMessage name="start_minutes" component={"div"} className={css.error}/>
                             </div>
+
+                            <div className={css.form_field}>
+                                <Field type="text" name="end_hour" placeholder="HH"
+                                value={values.end_hour}
+                                onChange={(e) => {
+                                    const end_hour = e.target.value;
+                                    if(/^\d*$/.test(end_hour) && end_hour.length <= 2){
+                                        setFieldValue("end_hour",end_hour)
+                                    
+                                    if(end_hour.length === 2){
+                                        setFocusOnEndMinutes(true)
+                                    }
+                                    else{
+                                        setFocusOnEndMinutes(false)
+                                    }
+                                }
+                                }}
+                                />
+                            </div>
+                            <span className={css.separate}>:</span>
+                            <div className={css.form_field}>
+                                <Field type="text" name="end_minutes" placeholder="MM"  id="end_minutes"
+                                value={values.end_minutes}
+                                onChange={(e) => {
+                                    const end_minutes = e.target.value;
+                                    if(/^\d*$/.test(end_minutes) && end_minutes.length <= 2){
+                                    setFieldValue("end_minutes",end_minutes)
+                                    }
+                                }
+                                }/>
+                                <ErrorMessage name="end_minutes" component={"div"} className={css.error}/>
+                            </div>
+
                             <div className={css.form_field}>
                                 <Field as="select" name="category" id="category" placeholder="Set category"/>
                                 <ErrorMessage name="category" component={"div"} className={css.error}/>
@@ -97,7 +137,6 @@ export const TasksInput = ({onSubmitTask}) => {
                     )}
                 </Formik>
             </div>
-        </div>
     )
 }
 

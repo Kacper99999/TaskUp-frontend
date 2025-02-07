@@ -12,11 +12,18 @@ body {
 .date{
     font-size: 32px;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+
 }
 
 .task{
-
+    display: flex;
+    justify-content: space-between;
     height: 50px;
+    padding: 0 20px;
 }
 
 .task:nth-child(odd){

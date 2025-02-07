@@ -1,7 +1,12 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 432px;
+}
+
 .calendar{
     display: flex;
     flex-wrap: wrap;
-    width: 432px;
     height: 166px;
 }
 
@@ -48,4 +53,11 @@
 
     width: 20px;
     height: 20px;
+}
+
+.date{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
 }

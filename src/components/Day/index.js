@@ -7,7 +7,9 @@ export const Day = ({day}) => {
         <div className={css.day}>
             {day.length > 0 ? (
                 <div className={css.date}>
-                {day[0].day}{day[0].month}{day[0].year}
+                    <p>{day[0].day}</p>
+                    <p>{day[0].month}</p>
+                    <p>{day[0].year}</p>
                 </div>  
             ) : (
                 <p>no selected data</p>
@@ -15,7 +17,7 @@ export const Day = ({day}) => {
             <div className={css.array_tasks}>           
             {day[0].taskText ? (
                 day.map((task,id) => (
-                    <div key={id} className={css.task}>{task.taskText}{task.hour}:{task.minutes}</div>
+                    <div key={id} className={css.task}><p>{task.taskText}</p><p>{task.hour}:{task.minutes}</p></div>
                 ))
             ):(
                 <p>no tasks</p>

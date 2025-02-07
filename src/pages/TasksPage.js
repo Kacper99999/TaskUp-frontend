@@ -35,8 +35,8 @@ export default function TasksPage() {
 
     return(
         <div>
+            <div style={{display:"flex", columnGap:"220px",rowGap:"60px", flexWrap:"wrap",justifyContent:"center",width:"1500px"}}>
             <TasksInput onSubmitTask={handleTaskSubmit}/>
-            <div style={{display:"flex", gap:"400px"}}>
             <Calendar onDayClick={handleDayClick}/>
             <Day day={filterTasks()}/>
             </div>
