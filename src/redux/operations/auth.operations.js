@@ -6,11 +6,12 @@ export const register = createAsyncThunk(
     async(credencials, thunkAPI) => {
         try {
             const response = await client.post("/users/signup", credencials);
+            withCredentials : true;
             setAuthHeader(response.data.token);
             return response.data;
         }
         catch(error){
-            return thunkAPI.rejectedWithValue(error.message);
+            return thunkAPI.rejectWithValue(error.message);
         }
     }
 )
@@ -24,7 +25,7 @@ export const logIn = createAsyncThunk(
             return response.data;
         }
         catch(error){
-            return thunkAPI.rejectedWithValue(error.message);
+            return thunkAPI.rejectWithValue(error.message);
         }
     }
 )

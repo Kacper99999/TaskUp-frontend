@@ -22,6 +22,7 @@ export const LogInForm = () => {
         initialValues= {{email:"", password:""}}
         validationSchema= {validationSchema}
         onSubmit={(values,{resetForm})=>{
+            console.log(values);
             dispatch(logIn(values));
             resetForm();
         }}
@@ -29,22 +30,22 @@ export const LogInForm = () => {
             {({isSubmitting}) => (
                 <Form className={css.form}>
                     <div className={css.welcome_text}>
-                    <h5>WELCOME IN TASK UP!</h5>
-                    <p className={css.text}>Log in using an email and password, after registering:</p>
+                        <h5>WELCOME IN TASK UP!</h5>
+                        <p className={css.text}>Log in using an email and password, after registering:</p>
                     </div> 
                     <div className={css.fields}>
                     <div className={css.form_input}>
-                    <Field type="email" name="email" id="email" placeholder="your@email.com"/> 
-                    <ErrorMessage name="email" component={"div"} className={css.error}/>
+                        <Field type="email" name="email" id="email" placeholder="your@email.com"/> 
+                        <ErrorMessage name="email" component={"div"} className={css.error}/>
                     </div>
                     <div className={css.form_input}>
-                    <Field type="password" name="password" id="password" placeholder="password"/>
-                    <ErrorMessage name="password" component={"div"} className={css.error}/>   
+                        <Field type="password" name="password" id="password" placeholder="password"/>
+                        <ErrorMessage name="password" component={"div"} className={css.error}/>   
                     </div>   
                     </div>
                     <div className={css.buttons}>
-                    <button className={css.login} type="submit" disabled={isSubmitting}>Log In</button>
-                    <AuthNavRegister/>
+                        <button className={css.login} type="submit" disabled={isSubmitting}>Log In</button>
+                        <AuthNavRegister/>
                     </div>
                 </Form>
             )
