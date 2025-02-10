@@ -5,9 +5,10 @@ export const register = createAsyncThunk(
     "auth/register",
     async(credencials, thunkAPI) => {
         try {
-            const response = await client.post("/users/signup", credencials);
-            withCredentials : true;
-            setAuthHeader(response.data.token);
+            const response = await client.post("/users/signup", credencials, {
+                withCredentials : true
+            });
+            // setAuthHeader(response.data.token);
             return response.data;
         }
         catch(error){
@@ -20,8 +21,10 @@ export const logIn = createAsyncThunk(
     "auth/logIn",
     async(credencials, thunkAPI) => {
         try {
-            const response = await client.post("users/login", credencials);
-            setAuthHeader(response.data.token);
+            const response = await client.post("users/login", credencials, {
+                withCredentials : true
+            });
+            // setAuthHeader(response.data.token);
             return response.data;
         }
         catch(error){
