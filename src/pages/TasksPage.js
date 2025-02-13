@@ -6,9 +6,9 @@ import { TasksInput } from "../components/TasksInput"
 export default function TasksPage() {
 
     const saveTasks = (task) => {
-        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-        tasks.push(task);
-        localStorage.setItem("tasks",JSON.stringify(tasks));
+        // let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        // tasks.push(task);
+        // localStorage.setItem("tasks",JSON.stringify(tasks));
     }
     const [selectedDay, setSelectedDay] = useState({day:"", month:"", year:""});
 
@@ -18,18 +18,18 @@ export default function TasksPage() {
     
     const handleTaskSubmit = (taskDetails) => {
         const tasks = {...taskDetails, day:selectedDay.day, month: selectedDay.month, year:selectedDay.year};
-        saveTasks(tasks);
+        // saveTasks(tasks);
     }
 
     const filterTasks = () => {
-        const tasks = JSON.parse(localStorage.getItem("tasks"));
-        const selectedTasks = tasks.filter(task => task.day === selectedDay.day && task.month === selectedDay.month && task.year === selectedDay.year)
-        if(selectedTasks.length === 0) {
-            return [selectedDay];
-        }
-        else{
-            return selectedTasks;
-        }
+        // const tasks = JSON.parse(localStorage.getItem("tasks"));
+        // const selectedTasks = tasks.filter(task => task.day === selectedDay.day && task.month === selectedDay.month && task.year === selectedDay.year)
+        // if(selectedTasks.length === 0) {
+        //     return [selectedDay];
+        // }
+        // else{
+        //     return selectedTasks;
+        // }
     }
 
 
@@ -38,7 +38,7 @@ export default function TasksPage() {
             <div style={{display:"flex", columnGap:"220px",rowGap:"60px", flexWrap:"wrap",justifyContent:"center",width:"1500px"}}>
             <TasksInput onSubmitTask={handleTaskSubmit}/>
             <Calendar onDayClick={handleDayClick}/>
-            <Day day={filterTasks()}/>
+            <Day day={selectedDay}/>
             </div>
         </div>
     )

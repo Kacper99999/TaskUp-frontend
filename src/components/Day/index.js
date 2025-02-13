@@ -5,24 +5,24 @@ export const Day = ({day}) => {
 
     return(
         <div className={css.day}>
-            {day.length > 0 ? (
+            {day ? (
                 <div className={css.date}>
-                    <p>{day[0].day}</p>
-                    <p>{day[0].month}</p>
-                    <p>{day[0].year}</p>
+                    <p>{day.day}</p>
+                    <p>{day.month}</p>
+                    <p>{day.year}</p>
                 </div>  
             ) : (
                 <p>no selected data</p>
             )}  
-            <div className={css.array_tasks}>           
-            {day[0].taskText ? (
+            {/* <div className={css.array_tasks}>           
+            {day ? (
                 day.map((task,id) => (
                     <div key={id} className={css.task}><p>{task.taskText}</p><p>{task.hour}:{task.minutes}</p></div>
                 ))
             ):(
                 <p>no tasks</p>
             )}
-            </div> 
+            </div>  */}
         </div>
     )
 }
