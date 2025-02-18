@@ -5,7 +5,7 @@ export const register = createAsyncThunk(
     "auth/register",
     async(credencials, thunkAPI) => {
         try {
-            const response = await client.post("/users/signup", credencials, {
+            const response = await client.post("/api/Account/register", credencials, {
                 withCredentials : true
             });
             // setAuthHeader(response.data.token);
@@ -21,7 +21,7 @@ export const logIn = createAsyncThunk(
     "auth/logIn",
     async(credencials, thunkAPI) => {
         try {
-            const response = await client.post("users/login", credencials, {
+            const response = await client.post("/api/Account/login", credencials, {
                 withCredentials : true
             });
             // setAuthHeader(response.data.token);

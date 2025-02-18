@@ -33,7 +33,7 @@ function App() {
         <Route
         path='/tasks'
         element={
-          <PrivateRoute redirectTo='/login' component={<TasksPage/>}/>
+          <RestrictedRoute redirectTo='/login' component={<TasksPage/>}/>
         }
         />
         </Route>

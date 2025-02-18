@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-    baseURL : "https://K2-api/"
+    baseURL : "https://localhost:7050"
 });
 
 const setAuthHeader = token => {

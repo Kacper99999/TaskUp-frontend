@@ -2,14 +2,12 @@ import { useState } from "react"
 import { Calendar } from "../components/Calendar"
 import { Day } from "../components/Day";
 import { TasksInput } from "../components/TasksInput"
+import { useDispatch } from "react-redux";
+import { addTask } from "../redux/operations/tasks.operations";
 
 export default function TasksPage() {
 
-    const saveTasks = (task) => {
-        // let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-        // tasks.push(task);
-        // localStorage.setItem("tasks",JSON.stringify(tasks));
-    }
+    const dispatch = useDispatch();
     const [selectedDay, setSelectedDay] = useState({day:"", month:"", year:""});
 
     const handleDayClick = ({day, month, year}) => {
@@ -17,8 +15,10 @@ export default function TasksPage() {
     }
     
     const handleTaskSubmit = (taskDetails) => {
-        const tasks = {...taskDetails, day:selectedDay.day, month: selectedDay.month, year:selectedDay.year};
-        // saveTasks(tasks);
+        const task = {...taskDetails, day:selectedDay.day, month: selectedDay.month, year:selectedDay.year};
+        dispatch(addTask(task))
+        console.log(task);
+
     }
 
     const filterTasks = () => {
