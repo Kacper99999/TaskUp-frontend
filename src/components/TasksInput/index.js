@@ -3,6 +3,9 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import css from "./TasksInput.module.css";
 import PropTypes from "prop-types";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const TasksInput = ({onSubmitTask}) => {
     const [focusOnStartMinutes, setFocusOnStartMinutes] = useState(false);
@@ -21,33 +24,27 @@ export const TasksInput = ({onSubmitTask}) => {
             document.getElementById("end_minutes").focus();
         }
     },[focusOnEndMinutes])
-    
-    const validationSchema = Yup.object({
-        taskText : Yup.string()
-        .required("Input text."),
-        start_hour: Yup.string()
-        .matches(/^([01]?[0-9]|2[0-3])$/, "Invalid start_hour. Use HH format (0-23).")
-        .required("When do you plan to start?."),
-        start_minutes: Yup.string()
-        .matches(/^[0-5][0-9]$/, "Invalid minutes. Use MM format (00-59).")
-        .required("When do you plan to start?."),
-        end_hour: Yup.string()
-        .matches(/^([01]?[0-9]|2[0-3])$/, "Invalid start_hour. Use HH format (0-23).")
-        .required("When do you plan to finish?"),
-        end_minutes: Yup.string()
-        .matches(/^[0-5][0-9]$/, "Invalid minutes. Use MM format (00-59).")
-        .required("When do you plan to finish?"),
-        // category : Yup.string()
-        // .required("Select category"),
-        // priority : Yup.string()
-        // .required("Select priority")
-    })
 
+     const showErrorToast = (message) => {
+        toast.error(message, {
+            className: "toast-error",
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    };
+
+    
     return(
             <div>
+                <ToastContainer/>
                 <Formik
                 initialValues={{taskText:"", start_hour:"", start_minutes:"", end_hour:"", end_minutes:"", category:"", priority:""}}
-                validationSchema={validationSchema}
                 onSubmit={(values,{resetForm}) => {
                     const start_time = `${values.start_hour}:${values.start_minutes}`;
                     const end_time = `${values.end_hour}:${values.end_minutes}`;
@@ -56,10 +53,14 @@ export const TasksInput = ({onSubmitTask}) => {
                     delete response.start_minutes;
                     delete response.end_hour;
                     delete response.end_minutes;
+                    if(!values.taskText || !values.start_hour || !values.start_minutes || !values.end_hour || !values.end_minutes){
+                        showErrorToast("Fill all fields")
+                    }
+
                     onSubmitTask(response);
                     resetForm();
                 }}>
-                    {({setFieldValue, values, isSubmitting}) => (
+                    {({setFieldValue, values, isSubmitting, errors, touched}) => (
                         <Form>
                             <div className={css.form_fields}>
                             <div className={css.form_field}>
@@ -95,7 +96,6 @@ export const TasksInput = ({onSubmitTask}) => {
                                     }
                                 }
                                 }/>
-                                <ErrorMessage name="start_minutes" component={"p"} className={css.error}/>
                             </div>
 
                             <div className={css.form_field}>
@@ -127,18 +127,16 @@ export const TasksInput = ({onSubmitTask}) => {
                                     }
                                 }
                                 }/>
-                                <ErrorMessage name="end_minutes" component={"div"} className={css.error}/>
                             </div>
 
                             <div className={css.form_field}>
                                 <Field as="select" name="category" id="category" placeholder="Set category"/>
-                                <ErrorMessage name="category" component={"div"} className={css.error}/>
                             </div>
                             <div className={css.form_field}>
                                 <Field as="select" name="priority" id="priority"/>
-                                <ErrorMessage name="priority" component={"div"} className={css.error}/>
                             </div>
                             <div>
+
                                 <button className={css.button} type="submit" disabled={isSubmitting}>Input</button>
                             </div>
                             </div>
@@ -149,6 +147,6 @@ export const TasksInput = ({onSubmitTask}) => {
     )
 }
 
-TasksInput.protoTypes = {
+TasksInput.propTypes = {
     onSubmitTask : PropTypes.func.isRequired
 };

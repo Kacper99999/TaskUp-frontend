@@ -100,9 +100,11 @@ input::placeholder{
     background-color: #4ba439;
 }
 
-.error{
-    position: absolute;
-    font-size: 11px;
-    top:107px;
-    margin: 0px;
+/* Zwiększ specyficzność selektora */
+.toast-error {
+    background-color: blue !important; /* Użycie !important, aby nadpisać domyślne style */
+    color: white !important;
+    font-size: 16px !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
 }
