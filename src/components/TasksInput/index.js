@@ -55,12 +55,14 @@ export const TasksInput = ({onSubmitTask}) => {
                     delete response.end_minutes;
                     if(!values.taskText || !values.start_hour || !values.start_minutes || !values.end_hour || !values.end_minutes){
                         showErrorToast("Fill all fields")
+                        
                     }
-
-                    onSubmitTask(response);
+                    else{
+                        onSubmitTask(response);
+                    }
                     resetForm();
                 }}>
-                    {({setFieldValue, values, isSubmitting, errors, touched}) => (
+                    {({setFieldValue, values, isSubmitting}) => (
                         <Form>
                             <div className={css.form_fields}>
                             <div className={css.form_field}>

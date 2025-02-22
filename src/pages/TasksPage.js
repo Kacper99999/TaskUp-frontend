@@ -18,7 +18,6 @@ export default function TasksPage() {
         const task = {...taskDetails, day:selectedDay.day, month: selectedDay.month, year:selectedDay.year};
         dispatch(addTask(task))
         console.log(task);
-
     }
 
     const filterTasks = () => {
