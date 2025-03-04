@@ -60,6 +60,7 @@ export const TasksInput = ({onSubmitTask}) => {
                     else{
                         onSubmitTask(response);
                     }
+                    console.log(response);
                     resetForm();
                 }}>
                     {({setFieldValue, values, isSubmitting}) => (
