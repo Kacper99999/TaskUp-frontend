@@ -1,48 +1,13 @@
-import { useEffect, useState } from "react";
-import * as Yup from "yup";
+import { useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import css from "./TasksInput.module.css";
 import PropTypes from "prop-types";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 
 export const TasksInput = ({onSubmitTask}) => {
-    const [focusOnStartMinutes, setFocusOnStartMinutes] = useState(false);
-    const [focusOnEndMinutes, setFocusOnEndMinutes] = useState(false);
 
-    // const dispatch = useDispatch();
-
-    useEffect(()=>{
-        if(focusOnStartMinutes){
-            document.getElementById("start_minutes").focus();
-        }
-    },[focusOnStartMinutes])   
-    
-    useEffect(() => {
-        if(focusOnEndMinutes){
-            document.getElementById("end_minutes").focus();
-        }
-    },[focusOnEndMinutes])
-
-     const showErrorToast = (message) => {
-        toast.error(message, {
-            className: "toast-error",
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-        });
-    };
-
-    
     return(
             <div>
-                <ToastContainer/>
                 <Formik
                 initialValues={{taskText:"", start_hour:"", start_minutes:"", end_hour:"", end_minutes:"", category:"", priority:""}}
                 onSubmit={(values,{resetForm}) => {
@@ -53,83 +18,18 @@ export const TasksInput = ({onSubmitTask}) => {
                     delete response.start_minutes;
                     delete response.end_hour;
                     delete response.end_minutes;
-                    if(!values.taskText || !values.start_hour || !values.start_minutes || !values.end_hour || !values.end_minutes){
-                        showErrorToast("Fill all fields")
-                        
-                    }
-                    else{
+                    
                         onSubmitTask(response);
-                    }
+                    
                     console.log(response);
                     resetForm();
                 }}>
-                    {({setFieldValue, values, isSubmitting}) => (
+                    {({isSubmitting}) => (
                         <Form>
                             <div className={css.form_fields}>
                             <div className={css.form_field}>
                                 <Field type="text" name="taskText" id="taskText" placeholder="Add a new task..."/>
                                 <ErrorMessage name="taskText" component={"div"} className={css.error}/>
-                            </div>
-                            <div className={css.form_field}>
-                                <Field type="text" name="start_hour" placeholder="HH"
-                                value={values.start_hour}
-                                onChange={(e) => {
-                                    const start_hour = e.target.value;
-                                    if(/^\d*$/.test(start_hour) && start_hour.length <= 2){
-                                        setFieldValue("start_hour",start_hour)
-                                    
-                                    if(start_hour.length === 2){
-                                        setFocusOnStartMinutes(true)
-                                    }
-                                    else{
-                                        setFocusOnStartMinutes(false)
-                                    }
-                                }
-                                }}
-                                />
-                            </div>
-                            <span className={css.separate}>:</span>
-                            <div className={css.form_field}>
-                                <Field type="text" name="start_minutes" placeholder="MM"  id="start_minutes"
-                                value={values.start_minutes}
-                                onChange={(e) => {
-                                    const start_minutes = e.target.value;
-                                    if(/^\d*$/.test(start_minutes) && start_minutes.length <= 2){
-                                    setFieldValue("start_minutes",start_minutes)
-                                    }
-                                }
-                                }/>
-                            </div>
-
-                            <div className={css.form_field}>
-                                <Field type="text" name="end_hour" placeholder="HH"
-                                value={values.end_hour}
-                                onChange={(e) => {
-                                    const end_hour = e.target.value;
-                                    if(/^\d*$/.test(end_hour) && end_hour.length <= 2){
-                                        setFieldValue("end_hour",end_hour)
-                                    
-                                    if(end_hour.length === 2){
-                                        setFocusOnEndMinutes(true)
-                                    }
-                                    else{
-                                        setFocusOnEndMinutes(false)
-                                    }
-                                }
-                                }}
-                                />
-                            </div>
-                            <span className={css.separate}>:</span>
-                            <div className={css.form_field}>
-                                <Field type="text" name="end_minutes" placeholder="MM"  id="end_minutes"
-                                value={values.end_minutes}
-                                onChange={(e) => {
-                                    const end_minutes = e.target.value;
-                                    if(/^\d*$/.test(end_minutes) && end_minutes.length <= 2){
-                                    setFieldValue("end_minutes",end_minutes)
-                                    }
-                                }
-                                }/>
                             </div>
 
                             <div className={css.form_field}>

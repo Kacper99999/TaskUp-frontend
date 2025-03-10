@@ -4,6 +4,7 @@ import { Day } from "../components/Day";
 import { TasksInput } from "../components/TasksInput"
 import { useDispatch } from "react-redux";
 import { addTask } from "../redux/operations/tasks.operations";
+import { Clock } from "../components/Clock";
 
 export default function TasksPage() {
 
@@ -36,6 +37,7 @@ export default function TasksPage() {
         <div>
             <div style={{display:"flex", columnGap:"220px",rowGap:"60px", flexWrap:"wrap",justifyContent:"center",width:"1500px"}}>
             <TasksInput onSubmitTask={handleTaskSubmit}/>
+            <Clock/>
             <Calendar onDayClick={handleDayClick}/>
             <Day day={selectedDay}/>
             </div>
