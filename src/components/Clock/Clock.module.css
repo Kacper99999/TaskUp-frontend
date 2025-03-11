@@ -1,7 +1,33 @@
+.clockNumberGroup{
+    cursor: pointer;
+
+}
+
 .clock{
     background-color: yellowgreen;
     width: 200px;
     height: 200px;
     border-radius: 50%;
+}
 
+.hoverCircle{
+    transition: r 0.3s ease;
+    
+    
+}
+
+.clockNumber{
+    transition: font-size 0.3s ease;
+    width: 10px;
+    height: 10px;
+
+    
+}
+.clockNumberGroup:hover .clockNumber{
+    font-size: 10px;
+}
+
+.clockNumberGroup:hover .hoverCircle {
+    r:20;
+    
 }
