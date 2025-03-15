@@ -3,31 +3,19 @@
 
 }
 
-.clock{
-    background-color: yellowgreen;
-    width: 200px;
-    height: 200px;
+.clock {
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
-}
-
-.hoverCircle{
-    transition: r 0.3s ease;
-    
-    
-}
-
-.clockNumber{
-    transition: font-size 0.3s ease;
-    width: 10px;
-    height: 10px;
-
-    
-}
-.clockNumberGroup:hover .clockNumber{
-    font-size: 10px;
-}
-
-.clockNumberGroup:hover .hoverCircle {
-    r:20;
-    
-}
+    position: relative;
+    margin: 50px;
+    background-color: #7CF564;
+  }
+  
+  .clockNumber {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    transform: translate(-50%, -50%); /* Wyśrodkowanie liczby */
+  }
