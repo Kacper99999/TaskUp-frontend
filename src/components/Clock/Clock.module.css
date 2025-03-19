@@ -1,21 +1,43 @@
-.clockNumberGroup{
-    cursor: pointer;
-
-}
-
 .clock {
     width: 300px;
     height: 300px;
     border-radius: 50%;
     position: relative;
     margin: 50px;
-    background-color: #7CF564;
+    background-color: white;
   }
   
   .clockNumber {
     position: absolute;
     font-size: 20px;
     font-weight: bold;
-    color: white;
+    color: black;
     transform: translate(-50%, -50%); /* Wyśrodkowanie liczby */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+  }
+
+
+  .handRotation {
+    position: absolute;
+    width: 4px;
+    height: 100px;
+    background-color: #1caa00;
+    top:50px;
+    left: 149px;
+    transform-origin: bottom;
+    user-select: none;
+    transition: transform 1s ease-in-out;
+  }
+
+  .activeNumber {
+    background-color: #1caa00;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    transition: transform 1s ease-in-out;
   }

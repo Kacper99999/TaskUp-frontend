@@ -46,6 +46,7 @@ export const Calendar = ({onDayClick}) => {
     }
 
     const handlePastMonth = () => {
+        console.log(currentMonth)
         if(currentMonth === 0){
             setChangeYear(changeYear - 1);
             setChangeMounth(10);
