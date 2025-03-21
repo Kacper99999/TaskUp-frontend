@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Calendar } from "../components/Calendar"
 import { Day } from "../components/Day";
 import { TasksInput } from "../components/TasksInput"
@@ -9,16 +9,27 @@ import { Clock } from "../components/Clock";
 export default function TasksPage() {
 
     const dispatch = useDispatch();
+    const [currentStep, setCurrentStep] = useState(1);
     const [selectedDay, setSelectedDay] = useState({day:"", month:"", year:""});
+    const [selectedTime, setSelectedTime] = useState({hour:0, minutes:0});
+
+    const handleTimeClick = (hour, minutes) => {
+        setSelectedTime({hour, minutes});
+        setCurrentStep(4);
+    }
 
     const handleDayClick = ({day, month, year}) => {
         setSelectedDay({day, month, year});
+        setCurrentStep(2);
     }
     
-    const handleTaskSubmit = (taskDetails) => {
-        const task = {...taskDetails, day:selectedDay.day, month: selectedDay.month, year:selectedDay.year};
-        dispatch(addTask(task))
-        console.log(task);
+    const handleTaskInput = (taskDetails) => {
+        setCurrentStep(3)
+    }
+
+    const submitTask = () => {
+        // const task = {...taskDetails, day:selectedDay.day, month: selectedDay.month, year:selectedDay.year, hour:selectedTime.hour, minutes:selectedTime.minutes };
+        // dispatch(addTask(task))
     }
 
     const filterTasks = () => {
@@ -36,9 +47,9 @@ export default function TasksPage() {
     return(
         <div>
             <div style={{display:"flex", columnGap:"220px",rowGap:"60px", flexWrap:"wrap",justifyContent:"center",width:"1500px"}}>
-            <TasksInput onSubmitTask={handleTaskSubmit}/>
-            <Clock/>
-            <Calendar onDayClick={handleDayClick}/>
+            {currentStep === 1  && <Calendar onDayClick={handleDayClick}/>}
+            {currentStep === 2 && <TasksInput handleTaskInput={handleTaskInput}/>}
+            {currentStep === 3 && <Clock onSubmitTime = {handleTimeClick}/>}
             <Day day={selectedDay}/>
             </div>
         </div>

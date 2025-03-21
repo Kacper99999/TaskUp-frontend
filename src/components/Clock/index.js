@@ -1,6 +1,6 @@
 import css from "./Clock.module.css";
 import { useEffect, useState } from "react";
-export const Clock = () => {
+export const Clock = ({onSubmitTime}) => {
 
     const [flag, setFlag] = useState(false);
     const [hour, setHour] = useState(0);
@@ -31,6 +31,10 @@ export const Clock = () => {
             setFlag(true);
         },1500)
     }
+
+    useEffect(() => {
+        onSubmitTime(hour, minutes)
+    },[minutes])
 
 
     const renderClockNumbersHours = () => {

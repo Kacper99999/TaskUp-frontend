@@ -46,10 +46,9 @@ export const Calendar = ({onDayClick}) => {
     }
 
     const handlePastMonth = () => {
-        console.log(currentMonth)
         if(currentMonth === 0){
             setChangeYear(changeYear - 1);
-            setChangeMounth(10);
+            setChangeMounth(changeMounth + 11);
         }
         else{
             setChangeMounth(changeMounth - 1)
@@ -57,10 +56,9 @@ export const Calendar = ({onDayClick}) => {
     }
 
     const handleFutureMonth = () => {
-        console.log(currentMonth)
         if(currentMonth > 10){
             setChangeYear(changeYear + 1)
-            setChangeMounth(-1);
+            setChangeMounth(changeMounth - 11);
         }
         else{
             setChangeMounth(changeMounth + 1)
