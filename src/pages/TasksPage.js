@@ -2,19 +2,24 @@ import { useEffect, useState } from "react"
 import { Calendar } from "../components/Calendar"
 import { Day } from "../components/Day";
 import { TasksInput } from "../components/TasksInput"
-import { useDispatch } from "react-redux";
-import { addTask } from "../redux/operations/tasks.operations";
+// import { useDispatch } from "react-redux";
+// import { addTask } from "../redux/operations/tasks.operations";
 import { Clock } from "../components/Clock";
 
 export default function TasksPage() {
 
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedDay, setSelectedDay] = useState({day:"", month:"", year:""});
     const [selectedTime, setSelectedTime] = useState({hour:0, minutes:0});
+    const [inputTasks, setInputTask] = useState("");
+    useEffect(() => {
+        console.log(currentStep);
+    },[currentStep])
 
-    const handleTimeClick = (hour, minutes) => {
-        setSelectedTime({hour, minutes});
+    const handleTimeClick = (arg) => {
+        setSelectedTime(arg);
+        console.log(arg);
         setCurrentStep(4);
     }
 
@@ -24,6 +29,7 @@ export default function TasksPage() {
     }
     
     const handleTaskInput = (taskDetails) => {
+        setInputTask(taskDetails)
         setCurrentStep(3)
     }
 
@@ -49,7 +55,7 @@ export default function TasksPage() {
             <div style={{display:"flex", columnGap:"220px",rowGap:"60px", flexWrap:"wrap",justifyContent:"center",width:"1500px"}}>
             {currentStep === 1  && <Calendar onDayClick={handleDayClick}/>}
             {currentStep === 2 && <TasksInput handleTaskInput={handleTaskInput}/>}
-            {currentStep === 3 && <Clock onSubmitTime = {handleTimeClick}/>}
+            <Clock onSubmitTime = {handleTimeClick}/>
             <Day day={selectedDay}/>
             </div>
         </div>

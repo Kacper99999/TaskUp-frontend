@@ -20,21 +20,15 @@ export const Clock = ({onSubmitTime}) => {
         }
         else{
             setMinutes(parseInt(time))
-            setSelectedMinutes(null);
 
-            setTimeout(() => {
-                setSelectedMinutes(parseInt(time))
-            },1000)
+            setSelectedMinutes(parseInt(time));
+        
         }
         
         setTimeout(() => {
             setFlag(true);
         },1500)
     }
-
-    useEffect(() => {
-        onSubmitTime(hour, minutes)
-    },[minutes])
 
 
     const renderClockNumbersHours = () => {
